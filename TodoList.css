@@ -1,12 +1,15 @@
-        h2 {
+    h2 {
         color : black;
         font-size: 30px;
         text-align: left;
     }
-    .delete {
+    body {
+        width : 800px;
+    }
+    /* .delete {
         position : relative;
         right : -245px;
-    }
+    } */
     #line {
         outline : none;
         border : none;
@@ -21,4 +24,10 @@
         border-radius:20px;
         background-color: cornflowerblue;
         color : white
+    }
+    div {
+        display : flex;
+    }
+    div > span {
+        flex : 0.43;
     }
