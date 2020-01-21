@@ -13,27 +13,34 @@ function add()
     </div>`
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
 }
-function waste(){
-    var a = document.getElementsByClassName
-}
-function deteleChild()
+function clickHandler(event)
 {
-    var clean = document.getElementsByClassName("clean")
+    var boss = document.getElementById("boss")
+    boss.removeChild(event.target.parentNode)
+}
+
+function checked()
+{   
+    var span = document.getElementsByTagName("span")
     
-    clean[0].innerHTML = "" // 삭제 버튼을 클릭 했을때 discard[0]번째랑 clena[0]
-}
-function clickHandler()
-{
-        discard[i].onclick = deteleChild()
-}
-
-
-    var discard = document.getElementsByClassName("delete")
-
-    for(var i = 0; i < discard.length; i++)
+    for(var i =0; i < span.length; i++)
     {
-        discard[i].addEventListener('click', clickHandler)
+        if(box[i].checked == true){
+        span[i].style.textDecoration = "line-through";
+        }
+        else
+        {
+            span[i].style.textDecoration = "none"
+        }
     }
-    var deleChild = document.getElementById("boss")
+}
+var discard = document.getElementsByClassName("delete")
+    for(var i = 0; i < discard.length; i++){
+        discard[i].addEventListener('click', clickHandler)
+}
 
-
+var box = document.getElementsByClassName("box")
+    for(var i = 0; i < box.length; i++)
+    {
+        box[i].addEventListener('click', checked)
+    }
