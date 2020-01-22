@@ -1,7 +1,8 @@
+
     h2 {
         color : black;
         font-size: 30px;
-        text-align: left;
+        text-align: center;
     }
     body {
         width : 500px;
@@ -9,18 +10,21 @@
         margin : 10px auto;
         height : 500px;
         box-shadow: 0 5px  10px -5px; /*그림자 줄때 쓰는거 */
+        
     }
-    /* .delete {
-        position : relative;
-        right : -245px;
-    } */
+     /* .delete {
+        border: 1px solid skyblue;
+        background-color: rgba(0,0,0,0);
+        color: skyblue;
+
+     } */
     #line {
-        outline : none;
-        border : none;
-        border-bottom: 1px solid black;
-        width : 40%;
+        /* outline : none;
+        border : none; */
+        border : 1px solid black;
+        width : 80%;
         height : 30px;
-        flex : 3;
+        flex : 2;
     }
     #blue {
         width : 80px;
@@ -37,5 +41,5 @@
         display : flex;
     }
     #boss > div > span {
-        flex : 1;
+        flex : 0.97;
     }
