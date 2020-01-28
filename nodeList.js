@@ -30,6 +30,7 @@ function add()
         value : line.value
     })
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
+    console.log(todoList)
 } 
 
 function lineValue(value)
@@ -54,16 +55,22 @@ function lineValue(value)
     var box = document.querySelector("div:last-child .box")
     box.addEventListener('click', checked)
 
+
 }
 
 function garbage(event)
 {   
     var boss = document.getElementById("boss")
     boss.removeChild(event.target.parentNode)
+    for(var i = 0 ; i < todoList.length; i++)
+    { if(this.parentNode.> 0){
+    todoList.splice(i,1)
+     }
+    console.log(todoList)
+    }
 }
 
-function checked(event)
-{   
+function checked(event){
     if(event.target.checked == true)
     {
         this.nextElementSibling.style.textDecoration = "line-through";
@@ -71,5 +78,19 @@ function checked(event)
     else
     {
        this.nextElementSibling.style.textDecoration = "none"
+    }
+}
+function todoListcheck()
+{
+    console.log(box.length)
+    for(var i = 0; i < todoList.length; i++){
+    if(todoList[i].do == true)
+    {
+        box[i].nextElementSibling.style.textDecoration = "line-through";
+    }
+    else
+    {
+       box[i].nextElementSibling.style.textDecoration = "none"
+    }
     }
 }
