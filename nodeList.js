@@ -1,18 +1,37 @@
 var blue = document.getElementById("blue")
 blue.addEventListener('click', add)
 
- var todoList = ['할일','할일2','3']
-
-lineValue(todoList[0])
-lineValue(todoList[1])
-lineValue(todoList[2])
+ var todoList = [
+{
+    id : 0,
+    do : true,
+    value : "할일"
+},
+{   id : 1,
+    do : false,
+    value : "할일2"
+},
+{
+    id : 2,
+    do : true,
+    value : '3'
+}]
+lineValue(todoList[0].value)
+lineValue(todoList[1].value)
+lineValue(todoList[2].value)
 
 function add()
 {
     var line = document.getElementById("line")
     lineValue(line.value)
+    todoList.push({
+        id : todoList.length,
+        do : false,
+        value : line.value
+    })
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
 } 
+
 function lineValue(value)
 {
     var boss = document.getElementById("boss") // 전체 부모
@@ -32,6 +51,9 @@ function lineValue(value)
 
     var discard = document.querySelector('div:last-child .delete')
     discard.addEventListener('click', garbage)
+    var box = document.querySelector("div:last-child .box")
+    box.addEventListener('click', checked)
+
 }
 
 function garbage(event)
@@ -50,10 +72,4 @@ function checked(event)
     {
        this.nextElementSibling.style.textDecoration = "none"
     }
-}
-
-var box = document.getElementsByClassName("box")
-for(var i = 0; i < box.length; i++)
-{
-    box[i].addEventListener('click', checked)
 }
