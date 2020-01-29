@@ -4,18 +4,19 @@ let id = 0; // id값 설정
 
  var todoList = [
     {
-    id : 0,
-    do : true,
-    value : "할일"
-    },
-    {   id : 1,
-    do : false,
-    value : "할일2"
+        id : 0,
+        do : true,
+        value : "할일"
     },
     {
-    id : 2,
-    do : true,
-    value : '3'
+        id : 1,
+        do : false,
+        value : "할일2"
+    },
+    {
+        id : 2,
+        do : true,
+        value : '3'
     }
 ]
 
@@ -27,7 +28,8 @@ function add() // todoLIst 추가하는 것
 {
     var line = document.getElementById("line")
     lineValue(line.value)
-    todoList.push({
+    todoList.push
+    ({
         id : todoList.length,
         do : false,
         value : line.value
@@ -38,22 +40,22 @@ function add() // todoLIst 추가하는 것
 function lineValue(value)
 {
     var boss = document.getElementById("boss") // 전체 부모
-        var a = document.createElement("div")
-        var b = document.createElement("input")
-        a.appendChild(b)
-        b.setAttribute("type","checkbox")
-        b.setAttribute("class","box")
-        var c = document.createElement("span")
-        c.setAttribute("id", id)
-        var d = document.createTextNode(value)
-        c.appendChild(d)
-        a.appendChild(c)
-        var e = document.createElement("i")
-        e.setAttribute("class","fas fa-trash-alt delete")
-        a.appendChild(e)     
-        boss.appendChild(a)
-        todoListCheck()
-        id++ // i값 증가
+    var a = document.createElement("div")
+    var b = document.createElement("input")
+    a.appendChild(b)
+    b.setAttribute("type","checkbox")
+    b.setAttribute("class","box")
+    var c = document.createElement("span")
+    c.setAttribute("id", id)
+    var d = document.createTextNode(value)
+    c.appendChild(d)
+    a.appendChild(c)
+    var e = document.createElement("i")
+    e.setAttribute("class","fas fa-trash-alt delete")
+    a.appendChild(e)     
+    boss.appendChild(a)
+    todoListCheck()
+    id++ // i값 증가
 
     var discard = document.querySelector('div:last-child .delete')
     discard.addEventListener('click', garbage)
@@ -64,11 +66,12 @@ function lineValue(value)
 function todoListCheck()
 {
     var boss = document.getElementById("boss")
-    for(var j = 0; j < todoList.length; j++){
-    if(todoList[j].do == true)
+    for(var j = 0; j < todoList.length; j++)
     {
-        boss.firstChild.nextElementSibling.style.textDecoration = "line-through";
-    }
+        if(todoList[j].do == true)
+        {
+            boss.firstChild.nextElementSibling.style.textDecoration = "line-through";
+        }
     }   
 }
 
@@ -79,14 +82,14 @@ function garbage(event) //todoList 삭제
     todoList.splice(event.target.parentNode.firstChild.nextElementSibling.id,1)
 }
 
-function checked(event){ // checkbox 체크할시 밑줄생성
-    
+function checked(event)  // checkbox 체크할시 밑줄생성
+{
     if(event.target.checked == true)
     {
         this.nextElementSibling.style.textDecoration = "line-through";
     }
     else
     {
-       this.nextElementSibling.style.textDecoration = "none"
+        this.nextElementSibling.style.textDecoration = "none"
     }
 }
