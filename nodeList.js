@@ -1,26 +1,29 @@
 var blue = document.getElementById("blue")
 blue.addEventListener('click', add)
+let id = 0; // id값 설정
 
  var todoList = [
-{
+    {
     id : 0,
     do : true,
     value : "할일"
-},
-{   id : 1,
+    },
+    {   id : 1,
     do : false,
     value : "할일2"
-},
-{
+    },
+    {
     id : 2,
     do : true,
     value : '3'
-}]
+    }
+]
+
 lineValue(todoList[0].value)
 lineValue(todoList[1].value)
 lineValue(todoList[2].value)
 
-function add()
+function add() // todoLIst 추가하는 것
 {
     var line = document.getElementById("line")
     lineValue(line.value)
@@ -29,8 +32,8 @@ function add()
         do : false,
         value : line.value
     })
+    todoListCheck()
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
-    console.log(todoList)
 } 
 
 function lineValue(value)
@@ -42,6 +45,7 @@ function lineValue(value)
         b.setAttribute("type","checkbox")
         b.setAttribute("class","box")
         var c = document.createElement("span")
+        c.setAttribute("id", id)
         var d = document.createTextNode(value)
         c.appendChild(d)
         a.appendChild(c)
@@ -49,28 +53,36 @@ function lineValue(value)
         e.setAttribute("class","fas fa-trash-alt delete")
         a.appendChild(e)     
         boss.appendChild(a)
+        todoListCheck()
+        id++ // i값 증가
+        b++
 
     var discard = document.querySelector('div:last-child .delete')
     discard.addEventListener('click', garbage)
     var box = document.querySelector("div:last-child .box")
     box.addEventListener('click', checked)
-
-
 }
 
-function garbage(event)
+function todoListCheck()
+{
+    var boss = document.getElementById("boss")
+    for(var j = 0; j < todoList.length; j++){
+    if(todoList[j].do == true)
+    {
+        boss.firstChild.nextElementSibling.style.textDecoration = "line-through";
+    }
+    }   
+}
+
+function garbage(event) //todoList 삭제
 {   
     var boss = document.getElementById("boss")
     boss.removeChild(event.target.parentNode)
-    for(var i = 0 ; i < todoList.length; i++)
-    { if(this.parentNode.> 0){
-    todoList.splice(i,1)
-     }
-    console.log(todoList)
-    }
+    todoList.splice(event.target.parentNode.firstChild.nextElementSibling.id,1)
 }
 
-function checked(event){
+function checked(event){ // checkbox 체크할시 밑줄생성
+    
     if(event.target.checked == true)
     {
         this.nextElementSibling.style.textDecoration = "line-through";
@@ -78,19 +90,5 @@ function checked(event){
     else
     {
        this.nextElementSibling.style.textDecoration = "none"
-    }
-}
-function todoListcheck()
-{
-    console.log(box.length)
-    for(var i = 0; i < todoList.length; i++){
-    if(todoList[i].do == true)
-    {
-        box[i].nextElementSibling.style.textDecoration = "line-through";
-    }
-    else
-    {
-       box[i].nextElementSibling.style.textDecoration = "none"
-    }
     }
 }
