@@ -54,7 +54,6 @@ function lineValue(value)
         boss.appendChild(a)
         todoListCheck()
         id++ // i값 증가
-        b++
 
     var discard = document.querySelector('div:last-child .delete')
     discard.addEventListener('click', garbage)
