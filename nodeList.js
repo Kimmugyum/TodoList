@@ -32,7 +32,6 @@ function add() // todoLIst 추가하는 것
         do : false,
         value : line.value
     })
-    todoListCheck()
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
 } 
 
