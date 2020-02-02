@@ -54,7 +54,7 @@ function lineValue(todoList)
     div.appendChild(i)     
     boss.appendChild(div)
 
-    if(todoList.do == true)
+    if(todoList.do == true) // do값에 따라 취소선 생성
     {
         input.nextSibling.style.textDecoration = "line-through";
     }
