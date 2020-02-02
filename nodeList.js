@@ -54,6 +54,10 @@ function lineValue(todoList)
     div.appendChild(i)     
     boss.appendChild(div)
 
+    if(todoList.do == true)
+    {
+        input.nextSibling.style.textDecoration = "line-through";
+    }
     var discard = document.querySelector('div:last-child .delete')
     discard.addEventListener('click', garbage)
     var box = document.querySelector("div:last-child .box")
@@ -64,7 +68,8 @@ function garbage(event) //todoList 삭제
 {   
     var boss = document.getElementById("boss")
     boss.removeChild(event.target.parentNode)
-    todoList.splice(event.target.parentNode.id,1)
+    todoList.splice(todoList.findIndex(i => i.id == todoList.id),1)
+    console.log(todoList)
 }
 
 function checked(event)  // checkbox 체크할시 밑줄생성
