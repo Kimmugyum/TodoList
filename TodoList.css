@@ -1,26 +1,31 @@
 
+    #top {
+        background-color : #504fd3;
+        border-top-left-radius: 2em;
+        border-top-right-radius: 2em;
+    }
+    #middle {
+        background-color: #dbedff;
+        padding: 10px;
+        margin : auto;
+    }
     h2 {
-        color : black;
-        font-size: 30px;
+        color : white;
+        font-size: 45px;
         text-align: center;
+        margin : auto;
     }
     body {
-        width : 500px;
-        /* border : 1px solid black; */
+        width : 400px;
         margin : 10px auto;
         height : 500px;
         box-shadow: 0 5px  10px -5px; /*그림자 줄때 쓰는거 */
+        border-radius: 1.7em;
+        background-color :#fbfcff
         
     }
-     /* .delete {
-        border: 1px solid skyblue;
-        background-color: rgba(0,0,0,0);
-        color: skyblue;
 
-     } */
     #line {
-        /* outline : none;
-        border : none; */
         border : 1px solid black;
         width : 80%;
         height : 30px;
@@ -32,7 +37,6 @@
         border-radius:20px;
         background-color: cornflowerblue;
         color : white;
-        /* flex : 1; */
     }
     form {
         display : flex;
@@ -43,6 +47,3 @@
     #boss > div > span {
         flex : 0.93;
     }
-    /* #white {
-        background-color : inherit;
-    } */
