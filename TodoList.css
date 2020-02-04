@@ -4,24 +4,26 @@
         border-top-left-radius: 2em;
         border-top-right-radius: 2em;
     }
+
     #middle {
         background-color: #dbedff;
-        padding: 10px;
+        padding: 5px;
         margin : auto;
     }
+
     h2 {
         color : white;
         font-size: 45px;
         text-align: center;
         margin : auto;
     }
+
     body {
         width : 400px;
         margin : 10px auto;
         height : 500px;
-        box-shadow: 0 5px  10px -5px; /*그림자 줄때 쓰는거 */
+        box-shadow: 0 5px  5px 0px; /*그림자 줄때 쓰는거 */
         border-radius: 1.7em;
-        background-color :#fbfcff
         
     }
 
@@ -31,6 +33,7 @@
         height : 30px;
         flex : 2;
     }
+
     #blue {
         width : 80px;
         height : 35px;
@@ -38,12 +41,19 @@
         background-color: cornflowerblue;
         color : white;
     }
+
     form {
         display : flex;
     }
+
+    #boss {
+        background-color: #dbedff;
+    }
+
     #boss > div {
         display : flex;
     }
+
     #boss > div > span {
-        flex : 0.93;
+        flex : 0.9;
     }
