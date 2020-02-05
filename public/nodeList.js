@@ -32,6 +32,16 @@ function add() // todoLIst 추가하는 것
         do : false,
         value : line.value
     })
+    $.ajax({
+        url: '/todos',
+        type: 'POST',
+        data: {
+            'content': line.value
+        },
+        success:function(data){
+            console.log(data)
+        }
+    })
     lineValue(todoList[todoList.length-1])
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
 } 
@@ -69,8 +79,7 @@ function garbage(event) //todoList 삭제
 {   
     var boss = document.getElementById("boss")
     boss.removeChild(event.target.parentNode)
-    todoList.splice(todoList.findIndex(i => i.id == todoList.id),1)
-    console.log(todoList)
+    $
 }
 
 function checked(event)  // checkbox 체크할시 밑줄생성
@@ -84,3 +93,14 @@ function checked(event)  // checkbox 체크할시 밑줄생성
         this.nextElementSibling.style.textDecoration = "none"
     }
 }
+function getDate()
+{
+    $.ajax({
+        url: 'http://localhost:8000/todos',
+        type: 'GET',
+        success:function(data){
+            console.log(data)
+        }
+    })
+}
+getDate()
