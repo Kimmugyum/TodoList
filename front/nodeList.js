@@ -56,6 +56,7 @@ function lineValue(todoList)
 
     if(todoList.do == true) // do값에 따라 취소선 생성
     {
+        input.checked = true;
         input.nextSibling.style.textDecoration = "line-through";
     }
     var discard = document.querySelector('div:last-child .delete')
