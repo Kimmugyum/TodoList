@@ -16,7 +16,7 @@ app.use(express.json())
 app.use(express.urlencoded({extended: false}))
 
 app.get('/todos', function(req, res) {
-    db.query(`SELECT * FROM nodelist`, function(error, result)
+    db.query(`SELECT * FROM nodelist`, function(error, result) //결과 얻어오기
     {
         if(error)
         {
@@ -26,7 +26,7 @@ app.get('/todos', function(req, res) {
         res.json(result)
     })
 })
-app.post('/todos', function(req, res){
+app.post('/todos', function(req, res){ // 데이터 넣기
     var content = req.body.content
     console.log(req.body.content)
     db.query('INSERT INTO nodelist(bucketList) VALUES(?)',[content], function(error, result){
@@ -37,12 +37,12 @@ app.post('/todos', function(req, res){
         // console.log(result)
         res.json({
             id: result.insertId,
-            content : content,
+            bucketList : content,
             do: false
         })
     })
 })
-app.put('/todos/:id/:do', function(req, res){
+app.put('/todos/:id/:do', function(req, res){ // 수정
     var number = req.params.id
     var play = req.params.do
     db.query('UPDATE nodelist SET DO = ? WHERE number = ?',[play, number], function(error, result){
@@ -50,12 +50,13 @@ app.put('/todos/:id/:do', function(req, res){
             console.log(error)
         }
         console.log(result)
-        res.json( {
+        res.json({ 
             result : 1
         })
     })
 })
-app.delete('/todos/:id', function(req, res){
+
+app.delete('/todos/:id', function(req, res){ //아이디 삭제
     var number = req.params.id
     db.query('DELETE FROM nodelist WHERE number = ?',[number], function(error, result){
         if(error)

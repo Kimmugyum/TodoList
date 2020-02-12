@@ -1,62 +1,46 @@
 var blue = document.getElementById("blue")
 blue.addEventListener('click', add)
 
- var todoList = [
-    {
-        id : 0,
-        do : true,
-        value : "할일"
-    },
-    {
-        id : 1,
-        do : false,
-        value : "할일2"
-    },
-    {
-        id : 2,
-        do : true,
-        value : '3'
-    }
-]
+    $.ajax({
+        url: 'http://localhost:8000/todos',
+        type: 'GET', // data값 가져오는것
+        success:function(data){
+            for(var i = 0; i < data.length; i++){
+                lineValue(data[i])
+            }
+        }
+    })
+    
 
-lineValue(todoList[0])
-lineValue(todoList[1])
-lineValue(todoList[2])
 
-function add() // todoLIst 추가하는 것
+
+function add() // todoList 추가하는 것
 {
     var line = document.getElementById("line")
-    todoList.push
-    ({
-        id : todoList.length,
-        do : false,
-        value : line.value
-    })
-    $.ajax({
+    $.ajax({ 
         url: '/todos',
-        type: 'POST',
+        type: 'POST', // 추가
         data: {
             'content': line.value
         },
         success:function(data){
-            console.log(data)
+            lineValue(data)
         }
     })
-    lineValue(todoList[todoList.length-1])
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
 } 
 
-function lineValue(todoList)
+function lineValue(data)
 {
     var boss = document.getElementById("boss") // 전체 부모
     var div = document.createElement("div")
-    div.setAttribute("id", todoList.id)
+    div.setAttribute("id", data.number)
     var input = document.createElement("input")
     div.appendChild(input)
     input.setAttribute("type","checkbox")
     input.setAttribute("class","box")
     var span = document.createElement("span")
-    var value = document.createTextNode(todoList.value)
+    var value = document.createTextNode(data.bucketList)
     span.appendChild(value)
     div.appendChild(span)
     var i = document.createElement("i")
@@ -64,7 +48,7 @@ function lineValue(todoList)
     div.appendChild(i)     
     boss.appendChild(div)
 
-    if(todoList.do == true) // do값에 따라 취소선 생성
+    if(data.do == true) // do값에 따라 취소선 생성
     {
         input.checked = true;
         input.nextSibling.style.textDecoration = "line-through";
@@ -79,28 +63,41 @@ function garbage(event) //todoList 삭제
 {   
     var boss = document.getElementById("boss")
     boss.removeChild(event.target.parentNode)
-    $
+    var number = event.target.parentNode.id
+    var unite = '/todos/' + number
+    $.ajax({
+        url: unite, // '/todos/' + number값 더해준것
+        type: 'DELETE', 
+        success:function(data){
+        }
+    })
 }
 
 function checked(event)  // checkbox 체크할시 밑줄생성
 {
+    var number = event.target.parentNode.id
+    var todos = '/todos/' + number
+    var unite = todos
+
     if(event.target.checked == true)
     {
-        this.nextElementSibling.style.textDecoration = "line-through";
-    }
-    else
-    {
-        this.nextElementSibling.style.textDecoration = "none"
-    }
-}
-function getDate()
-{
-    $.ajax({
-        url: 'http://localhost:8000/todos',
-        type: 'GET',
-        success:function(data){
+         $.ajax({
+         url: todos + '/1', // do값을 1로 변경
+         type: 'put',
+         success:function(data){
             console.log(data)
         }
     })
+    this.nextElementSibling.style.textDecoration = "line-through";
 }
-getDate()
+    else
+    {
+        $.ajax({ // do값을 0으로 바꿔줌
+            url: todos + '/0',
+            type : 'put',
+            success:function(data){        
+            }
+        })
+    this.nextElementSibling.style.textDecoration = "none"
+    }
+}
