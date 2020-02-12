@@ -1,6 +1,8 @@
 var blue = document.getElementById("blue")
 blue.addEventListener('click', add)
+getData()
 
+function getData()  {
     $.ajax({
         url: 'http://localhost:8000/todos',
         type: 'GET', // data값 가져오는것
@@ -10,12 +12,9 @@ blue.addEventListener('click', add)
             }
         }
     })
-    
+}
 
-
-
-function add() // todoList 추가하는 것
-{
+function add() {// todoList 추가하는 것
     var line = document.getElementById("line")
     $.ajax({ 
         url: '/todos',
@@ -30,8 +29,7 @@ function add() // todoList 추가하는 것
     line.value = "" // input에 값은 value를 쓰고 input값이 아닌것은 innerText or innerHTML쓴다.
 } 
 
-function lineValue(data)
-{
+function lineValue(data) {
     var boss = document.getElementById("boss") // 전체 부모
     var div = document.createElement("div")
     div.setAttribute("id", data.number)
@@ -48,8 +46,7 @@ function lineValue(data)
     div.appendChild(i)     
     boss.appendChild(div)
 
-    if(data.do == true) // do값에 따라 취소선 생성
-    {
+    if(data.do == true) {// do값에 따라 취소선 생성
         input.checked = true;
         input.nextSibling.style.textDecoration = "line-through";
     }
@@ -59,8 +56,7 @@ function lineValue(data)
     box.addEventListener('click', checked)
 }
 
-function garbage(event) //todoList 삭제
-{   
+function garbage(event) {//todoList 삭제
     var boss = document.getElementById("boss")
     boss.removeChild(event.target.parentNode)
     var number = event.target.parentNode.id
@@ -73,31 +69,27 @@ function garbage(event) //todoList 삭제
     })
 }
 
-function checked(event)  // checkbox 체크할시 밑줄생성
-{
+function checked(event)  {// checkbox 체크할시 밑줄생성
     var number = event.target.parentNode.id
     var todos = '/todos/' + number
-    var unite = todos
 
-    if(event.target.checked == true)
-    {
+    if(event.target.checked == true)  {
          $.ajax({
-         url: todos + '/1', // do값을 1로 변경
-         type: 'put',
-         success:function(data){
-            console.log(data)
-        }
-    })
-    this.nextElementSibling.style.textDecoration = "line-through";
-}
-    else
-    {
+            url: todos + '/1', // do값을 1로 변경
+            type: 'put',
+            success:function(data){
+                console.log(data)
+            }
+        })
+        this.nextElementSibling.style.textDecoration = "line-through";
+    }
+    else  {
         $.ajax({ // do값을 0으로 바꿔줌
             url: todos + '/0',
             type : 'put',
             success:function(data){        
             }
         })
-    this.nextElementSibling.style.textDecoration = "none"
+        this.nextElementSibling.style.textDecoration = "none"
     }
 }
