@@ -46,7 +46,7 @@ function lineValue(data) {
     div.appendChild(i)     
     boss.appendChild(div)
 
-    if(data.do == true) {// do값에 따라 취소선 생성
+    if(Number(data.do)) {// do값에 따라 취소선 생성
         input.checked = true;
         input.nextSibling.style.textDecoration = "line-through";
     }
@@ -58,13 +58,13 @@ function lineValue(data) {
 
 function garbage(event) {//todoList 삭제
     var boss = document.getElementById("boss")
-    boss.removeChild(event.target.parentNode)
     var number = event.target.parentNode.id
     var unite = '/todos/' + number
     $.ajax({
         url: unite, // '/todos/' + number값 더해준것
         type: 'DELETE', 
         success:function(data){
+            boss.removeChild(event.target.parentNode)
         }
     })
 }
@@ -72,24 +72,18 @@ function garbage(event) {//todoList 삭제
 function checked(event)  {// checkbox 체크할시 밑줄생성
     var number = event.target.parentNode.id
     var todos = '/todos/' + number
+    var play = "/1"
+    var line = "line-through"
 
-    if(event.target.checked == true)  {
-         $.ajax({
-            url: todos + '/1', // do값을 1로 변경
-            type: 'put',
-            success:function(data){
-                console.log(data)
-            }
-        })
-        this.nextElementSibling.style.textDecoration = "line-through";
+    if(!event.target.checked)  {
+        play = "/0"
+        line = "none"
     }
-    else  {
-        $.ajax({ // do값을 0으로 바꿔줌
-            url: todos + '/0',
-            type : 'put',
-            success:function(data){        
-            }
-        })
-        this.nextElementSibling.style.textDecoration = "none"
-    }
+    $.ajax({
+        url: todos + play, // do값을 1로 
+        type: 'put',
+        success:function(data){    
+            event.target.nextElementSibling.style.textDecoration = line
+        }
+    })
 }

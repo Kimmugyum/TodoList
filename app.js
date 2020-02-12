@@ -26,6 +26,7 @@ app.get('/todos', function(req, res) {
         res.json(result)
     })
 })
+
 app.post('/todos', function(req, res){ // 데이터 넣기
     var content = req.body.content
     console.log(req.body.content)
@@ -42,6 +43,7 @@ app.post('/todos', function(req, res){ // 데이터 넣기
         })
     })
 })
+
 app.put('/todos/:id/:do', function(req, res){ // 수정
     var number = req.params.id
     var play = req.params.do
